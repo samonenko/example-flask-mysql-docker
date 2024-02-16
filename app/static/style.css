@@ -1,0 +1,44 @@
+#header {
+	width: 100%;
+	height: 70px;
+	line-height: 70px;
+	background-color: green;
+	color: yellow;
+	font-size: 30px;
+}
+
+
+#title {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#logo {
+	height: 50px;
+	padding: 10px;
+	float: left;
+}
+
+td {
+	vertical-align: top;
+}
+
+textarta {
+	width: 300px;
+}
+#user-friends {
+	font-size:10px;
+	width: 250px
+}
+
+#user-big-image {
+	width:200px;
+}
+
+.user-image {
+	height: 50px;
+	padding: 10px;
+	border-radius: 50%;
+}
+
+

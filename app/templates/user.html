@@ -1,0 +1,47 @@
+<html>
+    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Микроблог</title>
+		<link rel="stylesheet" href="../static/style.css">
+    </head>
+    <body>
+		<div id="header">
+			<a href="/"><img src="../static/logo-cat.png" id="logo"></a>
+			<div id="title">Микроблог</a></div>
+		</div>
+		<table>
+			<tr>
+				<td>
+					<img src="../static/{{user.image}}" id="user-big-image">
+					<form method="POST" action="">
+						<input type = "submit" name='delete_button' value="Удалить все сообщения">
+					</form>
+					Подписки<br>
+					 <table>
+						{% for user in subscriptions %}
+						<tr>
+							<td>
+								<img src="../static/{{user.image}}" class="user-image">
+							</td>
+							<td>
+								<a href="../user/{{user.id}}">{{user.name}}</a><br>{{user.email}}
+							</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</td>
+				<td width="300px">
+					<h1>{{user.name}}</h1>
+					<form method="POST" action="">
+						<textarea name= "message_text" /></textarea><br>
+						<input type = "submit" >
+					</form>
+					{% for message in messages %} 
+					<i>{{message.time}}</i><br>
+					{{message.text}}<br>
+					<br>
+					{% endfor %}
+				</td>
+			</tr>
+		</table>
+    </body>
+</html>
