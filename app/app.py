@@ -1,10 +1,9 @@
-import datetime # Для получения текущей даты и времени
 from flask import Flask
-import mysql.connector
-
 from flask import render_template # Подключаем библиотеку для работы с шаблонами 
 from flask import request # Для обработка запросов из форм
 from flask import redirect # Для автоматического перенаправления 
+import mysql.connector
+import datetime # Для получения текущей даты и времени
 
 app = Flask(__name__)
 
@@ -47,7 +46,7 @@ def user(user_id):
 
     if request.method == "POST": # Если были переданы данные из формы методом POST
         if 'delete_button' in request.form: # Если была нажата кнопка delete_button
-            user_delete_all_messages(user_id) # То вызываем фукнцию удаления всех сообщений пользователя
+            user_delete_all_messages(user_id) # То вызываем функцию удаления всех сообщений пользователя
         elif 'message_text' in request.form: # Если была нажата кнопка отправки текста 
             if len(request.form['message_text']) > 0: #Если текст был введен
                 add_message(user_id, request.form['message_text']) # Вызываем функцию записи данных
@@ -135,15 +134,15 @@ def add_message(user_id, message_text): # Сохранить сообщение 
 	database_query('INSERT INTO message(user_id, text, time) VALUES (%s, %s, %s)', (user_id, message_text, current_time), True)
 	return
     
-def get_all_subscriptions():
+def get_all_subscriptions(): # Получить все подписки 
     subscriptions = database_query('SELECT * FROM subscription')
     return subscriptions   
     
-def delete_subscription(user1_id, user2_id):
+def delete_subscription(user1_id, user2_id): # Удалить заданную подписку
     database_query('DELETE FROM subscription WHERE user1_id=%s AND user2_id=%s', (user1_id, user2_id), True)
     return
 
-def add_subscription(user1_id, user2_id):
+def add_subscription(user1_id, user2_id): # Добавить новую подписку
     database_query('INSERT INTO subscription(user1_id, user2_id) VALUES (%s, %s)', (user1_id, user2_id), True)
     return
 
